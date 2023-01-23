@@ -1,10 +1,24 @@
 <%unless comment.archived?%>
+<div class="card mb-3" style="width: 18rem;">
+  <div class="card-header">
     <p>
         <strong>Commenter:</strong>
         <%= comment.commenter%>
     </p>
-    <p>
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item"><p>
         <strong>Comment:</strong>
         <%= comment.body%>
+    </p></li>
+    <li class="list-group-item">
+        Posted at: <%=time_tag comment.created_at, "data-local": "time-ago"%>
+    </li>
+  </ul>
+</div>
+
+
+    <p class="btn btn-danger mb-3">
+        <%= link_to "Destroy comment", [comment.article, comment],class:"link-dark text-decoration-none", data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}%>
     </p>
 <%end%>

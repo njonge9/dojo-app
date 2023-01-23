@@ -1,22 +1,29 @@
 <%= form_with model: article do |form|%>
 <%# form_with helper instantiates a form builder %>
-    <div>
-        <%= form.label :title%><br>
-        <%= form.text_field :title%>
-        <% article.errors.full_messages_for(:title).each do |message|%>
-            <div><%= message%></div>
-        <% end %>
-    </div>
+    <form>
+        <div class="mb-3">
+            <%= form.label :title, class:"form-label"%><br>
+            <%= form.text_field :title, class:"form-control"%>
+            <% article.errors.full_messages_for(:title).each do |message|%>
+                <div><%= message%></div>
+            <% end %>
+        </div>
 
-    <div>
-        <%= form.label :body%><br>
-        <%= form.text_area :body%>
-        <% article.errors.full_messages_for(:body).each do |message|%>
-            <div><%= message%></div>
-        <%end%>
-    </div>
+        <div class='mb-3'>
+            <%= form.label :body, class:"form-label"%><br>
+            <%= form.text_area :body, class:"form-control"%>
+            <% article.errors.full_messages_for(:body).each do |message|%>
+                <div><%= message%></div>
+            <%end%>
+        </div>
 
-    <div>
-        <%= form.submit%>
-    </div>
+        <div class='mb-3'>
+            <%= form.label :status%><br>
+            <%= form.select :status, ['public', 'private', 'archived'], selected: 'public', class:"form-select"%>
+        </div>
+
+        <div class='mb-3'>
+            <%= form.submit%>
+        </div>
+    </form>
 <% end %>

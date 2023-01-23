@@ -1,19 +1,21 @@
-<h1><%= @article.title%></h1>
+<div class="container">
+    <p class= "h1"><%= @article.title%></p>
+    <p><%= @article.body%></p>
+    <h2>Comments</h2>
+    <%= render @article.comments %>
 
-<p><%= @article.body%></p>
+    <h2>Add a comment:</h2>
+    <%= render 'comments/form'%>
+
+    <ul class= "text-decoration-none">
+        <p class="btn btn-primary">
+            <%= link_to "Edit", edit_article_path(@article), class:"text-decoration-none link-dark" %>
+        </p>
+        <p class= "btn btn-danger">
+            <%= link_to "Destroy", article_path(@article), data: { turbo_method: :delete, turbo_confirm: "Are you sure?"}, class:"text-decoration-none link-secondary"%>
+        </p>
+    </ul>
+</div>
 
 
-<h2>Comments</h2>
-<%= render @article.comments%>
 
-<h2>Add a comment:</h2>
-<%= render 'comment/form'%>
-
-<ul>
-    <p>
-        <%= link_to "Edit", edit_article_path(@article) %>
-    </p>
-    <p>
-        <%= link_to "Destroy", article_path(@article), data: { turbo_method: :delete, turbo_confirm: "Are you sure?"}%>
-    </p>
-</ul>
